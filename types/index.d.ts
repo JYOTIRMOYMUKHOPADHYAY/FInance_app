@@ -32,7 +32,7 @@ declare type User = {
   dwollaCustomerUrl?: string;
   dwollaCustomerId?: string;
   firstName: string;
-  lastName: string;
+  lastName?: string;
   name?: string;
   address1?: string;
   city?: string;
