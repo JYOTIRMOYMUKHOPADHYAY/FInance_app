@@ -13,6 +13,7 @@ import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { signIn, signUp } from "@/lib/actions/user.actions";
+import PlaidLink from "./PlaidLink";
 
 const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
   const [user, setUser] = useState(null);
@@ -29,12 +30,12 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
       ...(type === "sign-up" && {
         firstName: "",
         lastName: "",
-        address: "",
+        address1: "",
         city: "",
         state: "",
         postalCode: "",
         dateOfBirth: "",
-        aadhar: "",
+        ssn: "",
       }),
     },
   });
@@ -47,12 +48,12 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
           const userData = {
             firstName: data.firstName!,
             lastName: data.lastName!,
-            address: data.address!,
+            address1: data.address1!,
             city: data.city!,
             state: data.state!,
             postalCode: data.postalCode!,
             dateOfBirth: data.dateOfBirth!,
-            aadhar: data.aadhar!,
+            ssn: data.ssn!,
             email: data.email,
             password: data.password
           };
@@ -101,7 +102,7 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
       </header>
       {user ? (
         <div className="flex flex-col gap-4">
-          {/* <PlaidLink user={user} variant="primary" /> */}
+          <PlaidLink user={user} variant="primary" />
         </div>
       ) : (
         <>
@@ -125,7 +126,7 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
                   </div>
                   <CustomInput
                     control={form.control}
-                    name="address"
+                    name="address1"
                     label="Address"
                     placeholder="Enter your specific address"
                   />
@@ -158,8 +159,8 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
                     />
                     <CustomInput
                       control={form.control}
-                      name="aadhar"
-                      label="Aadhar No"
+                      name="ssn"
+                      label="SSN No"
                       placeholder="Example: 1234 1234 1234"
                     />
                   </div>
