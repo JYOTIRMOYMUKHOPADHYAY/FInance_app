@@ -10,6 +10,7 @@ import React from "react";
 const Home = async({searchParams: {id, page}}: SearchParamProps) => {
   const currentPage = Number(page)
   const loggedIn = await getLoggedInUser();
+
   const accounts = await getAccounts({
     userId: loggedIn.$id
   })
@@ -17,6 +18,7 @@ const Home = async({searchParams: {id, page}}: SearchParamProps) => {
 
   const appwriteItemId = (id as string) || accounts.data[0]?.appwriteItemId;
   const account = await getAccount({ appwriteItemId });
+  console.log(accounts)
   return (
     <section className="home">
       <div className="home-content">
@@ -24,7 +26,7 @@ const Home = async({searchParams: {id, page}}: SearchParamProps) => {
           <HeaderBox
             type="greeting"
             title="Welcome"
-            user={loggedIn?.name || "Guest"}
+            user={`${loggedIn?.firstName} ${loggedIn?.lastName}` || "Guest"}
             subtext="Access and manage your account and transactions efficiently."
           />
 

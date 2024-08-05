@@ -53,9 +53,6 @@ export const getAccounts = async ({ userId }: getAccountsProps) => {
     );
 
     const totalBanks = accounts.length;
-    console.log("===accounts==")
-    console.log(accounts)
-    console.log("======")
     const totalCurrentBalance = accounts.reduce((total: any, account: any) => {
       return total + account.currentBalance;
     }, 0);
