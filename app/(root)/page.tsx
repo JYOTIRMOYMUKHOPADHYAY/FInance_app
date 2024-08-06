@@ -8,7 +8,7 @@ import { getLoggedInUser } from "@/lib/actions/user.actions";
 import React from "react";
 
 const Home = async({searchParams: {id, page}}: SearchParamProps) => {
-  const currentPage = Number(page)
+  const currentPage = Number(page) || 1
   const loggedIn = await getLoggedInUser();
 
   const accounts = await getAccounts({
@@ -47,7 +47,7 @@ const Home = async({searchParams: {id, page}}: SearchParamProps) => {
 
       <RightSidebar 
         user={loggedIn}
-        transactions={accounts?.transactions}
+        transactions={account?.transactions}
         banks={accounts?.data.slice(0,2)}
       />
     </section>
